@@ -1,3 +1,13 @@
+---
+title: 使用GitHub Actions 自动部署hexo
+date: 2022-06-29 10:08:14
+categories:
+- hexo
+tags: 
+- GitHub Actions
+---
+
+
 # 使用GitHub Actions 自动部署hexo
 
 ##  1.创建hexo项目
