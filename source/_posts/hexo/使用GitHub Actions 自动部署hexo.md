@@ -4,7 +4,7 @@ date: 2022-06-29 10:08:14
 categories:
 - hexo
 tags: 
-- GitHub Actions
+- GitHub
 ---
 
 
