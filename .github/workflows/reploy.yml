@@ -22,26 +22,26 @@ jobs:
           node-version: "16.x"
 
        - name: 安装Hexo
-        run: |
+         run: |
           npm install hexo-cli -g
           npm install
 
         - name: 设置密钥
-        env:
-          HEXO_DEPLOY_PRIVATE_KEY: ${{ secrets.HEXO_DEPLOY_PRIVATE_KEY }}
-        run: |
-          mkdir -p ~/.ssh/
-          echo "$HEXO_DEPLOY_PRIVATE_KEY" > ~/.ssh/id_rsa 
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan github.com >> ~/.ssh/known_hosts  
+          env:
+            HEXO_DEPLOY_PRIVATE_KEY: ${{ secrets.HEXO_DEPLOY_PRIVATE_KEY }}
+          run: |
+            mkdir -p ~/.ssh/
+            echo "$HEXO_DEPLOY_PRIVATE_KEY" > ~/.ssh/id_rsa 
+            chmod 600 ~/.ssh/id_rsa
+            ssh-keyscan github.com >> ~/.ssh/known_hosts  
 
         - name: 设置Git信息
-        run: |
-          git config --global user.name 'xyh-stydy' 
-          git config --global user.email '2773604834@qq.com'     
+          run: |
+            git config --global user.name 'xyh-stydy' 
+            git config --global user.email '2773604834@qq.com'     
 
         - name: 自动部署hexo
-        run: |
-          hexo clean
-          hexo generate 
-          hexo deploy
+          run: |
+            hexo clean
+            hexo generate 
+            hexo deploy
