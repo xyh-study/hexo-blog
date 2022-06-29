@@ -20,10 +20,10 @@ jobs:
       with:
         node-version: "16.x"
 
-  # - name: 安装Hexo
-  #   run: |
-  #     npm install hexo-cli -g
-  #     npm install
+    - name: 安装Hexo
+      run: |
+        npm install hexo-cli -g
+        npm install
 
   # - name: 设置密钥
   #   env:
