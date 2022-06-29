@@ -9,7 +9,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: 拉取当前仓库分支 # 拉取当前执行 Actions 仓库的指定分支
         uses: actions/checkout@v2
