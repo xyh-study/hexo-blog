@@ -10,10 +10,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
   steps:
-    - name: checkout # 拉取当前执行 Actions 仓库的指定分支
-      uses: actions/checkout@v2
-      with:
-        ref: main
+  - name: checkout # 拉取当前执行 Actions 仓库的指定分支
+    uses: actions/checkout@v2
+    with:
+      ref: main
 
   # - name: 安装 Node环境 # 安装 Node 环境
   #   uses: actions/setup-node@v2
