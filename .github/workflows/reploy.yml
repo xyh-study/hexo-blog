@@ -15,7 +15,7 @@ jobs:
       - name: Setup Node # 安装 Node 环境
         uses: actions/setup-node@v2
         with:
-          node-version: "12.x"
+          node-version: "16.x"
 
       - name: Hexo Deploy # 部署步骤，这里以 hexo deploy 为例
         env:
