@@ -15,10 +15,10 @@ jobs:
       with:
         ref: main
 
-  # - name: 安装 Node环境 # 安装 Node 环境
-  #   uses: actions/setup-node@v2
-  #   with:
-  #     node-version: "16.x"
+    - name: 安装 Node环境 # 安装 Node 环境
+      uses: actions/setup-node@v2
+      with:
+        node-version: "16.x"
 
   # - name: 安装Hexo
   #   run: |
