@@ -10,37 +10,37 @@ jobs:
   build:
     runs-on: ubuntu-latest
   steps:
-  - name: 拉取当前仓库分支 # 拉取当前执行 Actions 仓库的指定分支
-    uses: actions/checkout@v2
-    with:
-      ref: main
+    - name: checkout # 拉取当前执行 Actions 仓库的指定分支
+      uses: actions/checkout@v2
+      with:
+        ref: main
 
-  - name: 安装 Node环境 # 安装 Node 环境
-    uses: actions/setup-node@v2
-    with:
-      node-version: "16.x"
+  # - name: 安装 Node环境 # 安装 Node 环境
+  #   uses: actions/setup-node@v2
+  #   with:
+  #     node-version: "16.x"
 
-  - name: 安装Hexo
-    run: |
-      npm install hexo-cli -g
-      npm install
+  # - name: 安装Hexo
+  #   run: |
+  #     npm install hexo-cli -g
+  #     npm install
 
-  - name: 设置密钥
-    env:
-      HEXO_DEPLOY_PRIVATE_KEY: ${{ secrets.HEXO_DEPLOY_PRIVATE_KEY }}
-    run: |
-      mkdir -p ~/.ssh/
-      echo "$HEXO_DEPLOY_PRIVATE_KEY" > ~/.ssh/id_rsa 
-      chmod 600 ~/.ssh/id_rsa
-      ssh-keyscan github.com >> ~/.ssh/known_hosts
+  # - name: 设置密钥
+  #   env:
+  #     HEXO_DEPLOY_PRIVATE_KEY: ${{ secrets.HEXO_DEPLOY_PRIVATE_KEY }}
+  #   run: |
+  #     mkdir -p ~/.ssh/
+  #     echo "$HEXO_DEPLOY_PRIVATE_KEY" > ~/.ssh/id_rsa
+  #     chmod 600 ~/.ssh/id_rsa
+  #     ssh-keyscan github.com >> ~/.ssh/known_hosts
 
-  - name: 设置Git信息
-    run: |
-      git config --global user.name 'xyh-stydy' 
-      git config --global user.email '2773604834@qq.com'
+  # - name: 设置Git信息
+  #   run: |
+  #     git config --global user.name 'xyh-stydy'
+  #     git config --global user.email '2773604834@qq.com'
 
-  - name: 自动部署hexo
-    run: |
-      hexo clean
-      hexo generate 
-      hexo deploy
+  # - name: 自动部署hexo
+  #   run: |
+  #     hexo clean
+  #     hexo generate
+  #     hexo deploy
