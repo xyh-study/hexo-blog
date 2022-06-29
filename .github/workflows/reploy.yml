@@ -1,29 +1,47 @@
 name: Deploy Hexo Blog # Actions 显示的名字，随意设置
 
-on: [push] # 监听到 push 事件后触发
+# 触发条件
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout # 拉取当前执行 Actions 仓库的指定分支
+      - name: 拉取当前仓库分支 # 拉取当前执行 Actions 仓库的指定分支
         uses: actions/checkout@v2
         with:
           ref: main
 
-      - name: Setup Node # 安装 Node 环境
+      - name: 安装 Node环境 # 安装 Node 环境
         uses: actions/setup-node@v2
         with:
           node-version: "16.x"
 
-      - name: Hexo Deploy # 部署步骤，这里以 hexo deploy 为例
-        env:
-          DEPLOY_BLOG: ${{ secrets.DEPLOY_BLOG }}
+       - name: 安装Hexo
         run: |
-          git config --global user.name "xyh-study"
-          git config --global user.email "2773604834@qq.com"
-          npm i -g hexo-cli
+          npm install hexo-cli -g
           npm install
-          hexo g
-          hexo d
+
+        - name: 设置密钥
+        env:
+          HEXO_DEPLOY_PRIVATE_KEY: ${{ secrets.HEXO_DEPLOY_PRIVATE_KEY }}
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$HEXO_DEPLOY_PRIVATE_KEY" > ~/.ssh/id_rsa 
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts  
+
+        - name: 设置Git信息
+        run: |
+          git config --global user.name 'xyh-stydy' 
+          git config --global user.email '2773604834@qq.com'     
+
+        - name: 自动部署hexo
+        run: |
+          hexo clean
+          hexo generate 
+          hexo deploy
