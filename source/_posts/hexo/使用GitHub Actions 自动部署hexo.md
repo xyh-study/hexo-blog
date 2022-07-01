@@ -10,13 +10,13 @@ tags:
 
 # 使用GitHub Actions 自动部署hexo
 
-##  1.创建hexo项目
+##  1.✨创建hexo项目
 
 - 配置node环境 [node官网]([Node.js 中文网 (nodejs.cn)](http://nodejs.cn/))
 
 - 安装hexo项目 [安装文档]([文档 | Hexo](https://hexo.io/zh-cn/docs/))
 
-## 2.创建github仓库
+## 2.🤡创建github仓库
 
 - 进入[GitHub]([GitHub](https://github.com/)) 注册并登录
 - 点击new repository 创建一个新的仓库 
@@ -26,7 +26,7 @@ tags:
 
 <img src="https://hexo-blog-repo.oss-cn-hangzhou.aliyuncs.com/blog-pic-repo/202207010921753.png" alt="image-20220701092146917" style="zoom:150%;" />
 
-## 3.创建自动部署文件
+## 3.🥱创建自动部署文件
 
 - 在.github文件夹下面创建 workflows文件夹 里面创建reploy.yml文件
 
@@ -80,7 +80,7 @@ jobs:
 
 ```
 
-## 4. 配置仓库私钥和公钥
+## 4.🚓配置仓库私钥和公钥
 
 ### 1. 首先使用git命令配置用户名和邮箱避免出现不必要的错误
 
@@ -120,7 +120,7 @@ ssh-keygen -t rsa -C "xxxxx@xxxxx.com邮箱账号"
 
 <img src="https://hexo-blog-repo.oss-cn-hangzhou.aliyuncs.com/blog-pic-repo/202207010933905.png" style="zoom:150%;"/>
 
-## 5. 配置hexo下的 _config.yml
+## 5.🤐配置hexo下的 _config.yml
 
 ```yml
 deploy:
@@ -134,15 +134,31 @@ deploy:
 
 
 
-## 6. 测试
+## 6.🥶测试
 
 1. 使用git命令将本地的博客项目推送到github上
 
+```
+git add .
+git commit -m "init"
+git push
+```
+
+2. 进入github 博客项目仓库 可以看到一个Action 下面有我们提交的自动部署
+
+<img src="https://hexo-blog-repo.oss-cn-hangzhou.aliyuncs.com/blog-pic-repo/202207010940962.png" alt="image-20220701094043929" style="zoom:150%;" />
 
 
 
+3. 查看自动部署情况
 
+   <img src="https://hexo-blog-repo.oss-cn-hangzhou.aliyuncs.com/blog-pic-repo/202207010942800.png" alt="image-20220701094226582" style="zoom:150%;" />
 
+4. 自动部署成功,这样当我将blog项目推送到仓库是会自动 执行hexo d 命令 将博客部署到 github.io 下
+
+## 7.❤️结语
+
+搭建自动部署的过程其实不是很难,主要是理解 github actions 的执行原理和流程 以及公钥私钥配置在哪个仓库下面的那个地方
 
 
 
