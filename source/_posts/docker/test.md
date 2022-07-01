@@ -82,7 +82,7 @@ docker search reids
 ### 4.4 拉取镜像
 ```
 docker pull redis:版本号  版本号可以在docker hub上查找
-``` 
+```
 
 ### 4.5 删除镜像
 ```
@@ -105,12 +105,12 @@ docker run 参数
 
 ``` 
 docker run -it --name=c1 tomcat /bin/bash
- ```
+```
 
 ### 5.2 进入容器 可以通过name 或者id 进入容器
 ```
 docker exec -it name /bin/bash
- ```
+```
 
 ### 5.3 查看正在运行的容器
 ``` 
@@ -121,12 +121,12 @@ docker ps -a 查看所有容器
 ### 5.4 启动容器
 ``` 
 docker start name
- ```
+```
 
 ### 5.5 关闭容器
 ```
  docker stop name
- ```
+```
 
 ### 5.5 删除容器
 ``` 
@@ -146,7 +146,7 @@ docker inspect name
 - 当容器目录和数据卷目录绑定后，对方的修改会立即同步
 - 一个数据卷可以被多个容器同时挂载
 - 一个容器也可以被挂载多个数据卷
- 
+
 
 ### 6.2 配置数据卷
 ```
@@ -162,8 +162,13 @@ docker run -id --name=c1 -v /root/data:/root/data_container  tomcat /bin/bash
 ## 七 应用部署
 ### 7.1 部署mysql
 1.拉取mysql镜像
-``docker pull mysql``
+
+```
+docker pull mysql
+```
+
 2.创建容器 设置端口映射  和 目录映射
+
 ```
 mkdir /root/mysql
 docker run -id -p 3306:3306 --name mysql -v /root/mysql/conf:/etc/mysql/conf.d -v /root/mysql/logs:/logs -v /root/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 mysql
@@ -181,45 +186,36 @@ flush privileges;
 ```
 
 ### 7.2 部署tomcat
-1. 拉取tomcat镜像
-`` docker pull tomcat``
-2.创建容器 设置端口映射  和 目录映射
+
 ```
+# 1. 拉取镜像
+docker pull tomcat
+#2. 创建挂载目录
 mkdir /root/tomcat
 docker run -id  --restart=always --name=tomcat -p 8080:8080 -v /root/tomcat:/usr/local/tomcat/webapps tomcat
 ```
 
-### 7.3 部署ngnix
-1. 拉取ngnix镜像
-`` docker pull nginx``
-2.创建容器 设置端口映射  和 目录映射
-```
-mkdir /root/nginx 
-cd /root/nginx
-mkdir conf
-cd /root/nginx/conf
-vim nginx.conf
-```
-3. 在/root/tomcat中创建ROOT文件作为项目的根目录
-
+### 7.3 部署
 
 ### 7.4 部署redis
-1. 拉取redis镜像
-`` docker pull redis``
-2.创建容器 设置端口映射
-``docker run --restart=always  -id --name=redis -p 6379:6379 redis``
+```
+# 1.拉取redis镜像
+docker pull redis
+# 2.创建容器 设置端口映射
+docker run --restart=always  -id --name=redis -p 6379:6379 redis  --requirepass "password"
+```
+
+*在创建redis的时候一定要注意设置密码,防止端口被黑客注入*
 
 ### 7.5  部署rabbitmq
-1. 拉取rabbitmq 镜像 (management 带有web控制台)
-    `` docker pull rabbitmq:management`` 
-2. 创建容器 设置端口映射
 ```
-#默认情况下就是guest
+# 1. 拉取镜像  版本为: management 带有web控制台
+docker pull rabbitmq:management
+
+#2. 创建容器
 docker run -id  --restart=always --name rabbitmq  -p 5672:5672 -p 15672:15672 -v /root/rabbitmq:/var/lib/rabbitmq  rabbitmq:management
 
-
 5672：应用访问端口；15672：控制台Web端口号
-
 
 # 可以指定登录的用户名和密码
 docker run -id -p 15672:15672  -p  5672:5672  -e RABBITMQ_DEFAULT_USER=admin -e RABBITMQ_DEFAULT_PASS=123456 --name rabbitmq --hostname=rabbitmqhostone  rabbitmq 
@@ -235,13 +231,13 @@ docker run -id -p 15672:15672  -p  5672:5672  -e RABBITMQ_DEFAULT_USER=admin -e 
   ```docker
   docker run  --restart=always --name nginx -p 80:80 -d nginx
   ```
- 
+
 - **从nginx容器中映射核心文件** 
 > 1.创建挂载目录
   ```shell
     mkdir -p /root/nginx/{conf,log,html}
   ```
-  
+
 > 2.拷贝nginx容器对应的文件默认配置
   ```shell
     docker cp nginx:/etc/nginx/nginx.conf /root/nginx/conf/nginx.conf
