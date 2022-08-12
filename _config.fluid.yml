@@ -42,7 +42,7 @@ code:
   # 代码语言
   # Code language
   language:
-    enable: false
+    enable: true
     default: "TEXT"
 
   # 代码高亮
@@ -110,7 +110,7 @@ fun_features:
     enable: true
     element: h1,h2,h3,h4,h5,h6
     # Options: left | right
-    placement: left
+    placement: right
     # Options: hover | always | touch
     visible: hover
     # Options: § | # | ❡
@@ -237,7 +237,7 @@ custom_js:
 
 # 指定自定义 .css 文件路径，用法和 custom_js 相同
 # The usage is the same as custom_js
-custom_css: /css/drake_iamh77.css
+custom_css: 
 
 # 网页访问统计
 # Analysis of website visitors
@@ -542,8 +542,8 @@ post:
 
   # 文章在首页的默认封面图，当没有指定 index_img 时会使用该图片，若两者都为空则不显示任何图片
   # Path of the default post cover when `index_img` is not set. If both are empty, no image will be displayed
-  # 随机获取首页图片
-  default_index_img: https://api.ixiaowai.cn/mcapi/mcapi.php 
+  # 随机获取首页图片 https://api.ixiaowai.cn/mcapi/mcapi.php 
+  default_index_img: 
 
   # 文章标题下方的元信息
   # Meta information below title
